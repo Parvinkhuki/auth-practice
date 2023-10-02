@@ -13,7 +13,7 @@ const Banner = () => {
         }
 
     }
-   const {user,signOut}=useContext(AuthContext)
+   const {user,logOut}=useContext(AuthContext)
 
     return (
         <div>
@@ -27,9 +27,9 @@ const Banner = () => {
       <NavLink to="/register" style={navStyle} className='text-3xl'><li><a>Register</a></li></NavLink>
      {
                         user?.email ? 
-                        <NavLink to="/login" style={navStyle} className='text-3xl' onClick={signOut}
-                        ><li>Logout
-                        </li></NavLink>   
+                       <div> <NavLink  style={navStyle} className='text-3xl' ><li>{user.email}
+                       </li></NavLink>  
+                      <button className='btn btn-secondary' onClick={logOut}>signOut</button> </div>
                             :
      <NavLink to="/login" style={navStyle} className='text-3xl'><li>Login
 </li></NavLink>}

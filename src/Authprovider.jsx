@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from './firebaseconfig';
-import { GoogleAuthProvider, createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword,onAuthStateChanged,signInWithEmailAndPassword, signInWithPopup,signOut } from 'firebase/auth';
 export const AuthContext =createContext(null)
 
 
@@ -27,7 +27,7 @@ useEffect(()=>{onAuthStateChanged(auth, (user) => {
 }
 ,[])
 
-const signOut=  () => {
+const logOut=  () => {
     return signOut(auth)
 }
 
@@ -37,7 +37,7 @@ const signOut=  () => {
 
 
 const authentications={
-    googleLogin,signUp,signIn,user,signOut
+    googleLogin,signUp,signIn,user,logOut
 }
 
     return (
