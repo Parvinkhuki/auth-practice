@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../Authprovider';
 
 const Banner = () => {
  const navStyle = 
@@ -12,6 +13,7 @@ const Banner = () => {
         }
 
     }
+   const {user,signOut}=useContext(AuthContext)
 
     return (
         <div>
@@ -23,13 +25,14 @@ const Banner = () => {
     <ul className="menu menu-horizontal px-1">
       <NavLink to="/" style={navStyle} className='text-3xl'><li><a>Home</a></li></NavLink>
       <NavLink to="/register" style={navStyle} className='text-3xl'><li><a>Register</a></li></NavLink>
-      <NavLink to="/login" style={navStyle} className='text-3xl'>   <li>
-          <summary>
-          Login
-          </summary>
-         
-       
-      </li></NavLink>
+     {
+                        user?.email ? 
+                        <NavLink to="/login" style={navStyle} className='text-3xl' onClick={signOut}
+                        ><li>Logout
+                        </li></NavLink>   
+                            :
+     <NavLink to="/login" style={navStyle} className='text-3xl'><li>Login
+</li></NavLink>}
     </ul>
   </div>
 </div>
